@@ -1,0 +1,226 @@
+/*toda a página*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+/*modo escuro (padrão)*/
+:root{
+  --text-color: white;
+  --bg-url: url(./assets/dark-mode.jpg);
+  --stroke-color: rgb(214, 101, 9);
+  --surface-color: rgba(214, 101, 9, 0.2);
+  --surface-color-hover: rgba(185, 151, 241, 0.05);
+  --icon-button-mode: url(./assets/moon-stars.svg)
+}
+
+/*modo claro*/
+.light{
+  --text-color: black;
+  --bg-url: url(./assets/light-mode.jpg);
+  --stroke-color: rgb(214, 101, 9);
+  --surface-color: rgba(214, 101, 9, 0.2);
+  --surface-color-hover: rgba(214, 101, 9, 0.05);
+  --icon-button-mode: url(./assets/sun.svg);
+}
+
+/*Adicionando imagem de fundo*/
+body{
+  /*background-image: url(./assets/bg-mobile.jpg);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  
+  Simplificando: color image repeat position/size*/
+  background: var(--bg-url) no-repeat top center/cover;
+  height: 100vh; /*ajustando a 100% da imagem na altura da página*/
+}
+
+/*padronizando letras da página*/
+body *{
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color);
+}
+
+/*regularizando a "caixa" maior*/
+#container{
+  width: 100%;
+  max-width: 588px;
+  /*border: 1px solid white; (para vizualizar)*/
+  margin: 56px auto 0px;
+  padding: 0 24px;
+}
+
+/*"Caixa" da imagem de perfil*/
+#profile{
+  text-align: center;
+  padding: 24px;
+}
+
+/*imagem de perfil*/
+#profile img{
+  /*display: block;*/
+  width: 112px;
+  /*margin: auto;*/
+}
+
+/*ajustando @user_name*/
+#profile p{
+  font-weight: 400;
+  line-height: 24px;
+  margin-top: 8px;
+}
+
+/*botão para mudar modo*/
+#switch{
+  /*border: 1px solid white; para enxergar o tamanho do switch*/
+  position: relative;
+  width: 64px;
+
+  margin: 4px auto;
+}
+
+/*inserindo ícone*/
+#switch button{
+  width: 32px;
+  height: 32px;
+  background: white var(--icon-button-mode) no-repeat center;
+  border: 0;
+  border-radius: 50%; /*arredondando bordas*/
+
+  position: absolute;
+  top: 50%;
+  left: 0; /*definindo posição no modo escuro*/
+  z-index: 1;
+  transform: translateY(-50%);
+
+  /*usando animação*/
+  animation: slide-on 0.2s forwards;
+}
+
+/*definindo posição botão no modo light*/
+.light #switch button{
+  /*right: 0;
+  left: initial;*/
+
+  /*Simplificando e usando animação*/
+  animation: slide-in 0.2s forwards;
+}
+
+#switch button:hover{
+  outline: 8px solid var(--surface-social-color-hover)
+}
+
+/*inserindo caixinha do botão*/
+#switch span{
+  display: block;
+  width: 64px;
+  height: 24px;
+  background: var(--surface-color);
+  border: 1px solid var(--stroke-color);
+  backdrop-filter: blur(4px);
+  --webkit-backdrop-filter: blur(4px);
+  border-radius: 9999px;
+}
+
+/*lsta*/
+ul{
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  padding: 24px 0;
+}
+
+ul li a{
+  display: flex;
+  justify-content: center;
+  /*text-aling também daria certo*/
+  align-items: center; /*alinhanco altura*/
+
+  padding: 16px 24px;
+
+  border: 1px solid var(--stroke-color);
+  background: var(--surface-color);
+  border-radius: 8px; /*arredondando bordas*/
+
+  backdrop-filter: blur(4px); /*desfocando fundo do "botão"*/
+  --webkit-backdrop-filter: blur(4px);
+
+  text-decoration: none;
+  font-weight: 500;
+
+  transition: background 0.2s;
+}
+
+/*ajustando hover dos links (botões)*/
+ul li a:hover{
+  border: 1.5px solid var(--stroke-color);
+  background: var(--surface-color-hover);
+}
+
+/*ajustando links nas logos*/
+#social-links{
+  display: flex;
+  justify-content: center;
+
+  padding: 24px;
+
+  font-size: 24px;
+}
+
+/* alinhando icones ao centro do hover*/
+#social-links a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  transition: background 0.2s;
+  border-radius: 50%;
+}
+
+/*colocando hover de mod(claro/escuro)*/
+#social-links a:hover{
+  background: var(--surface-social-color-hover);
+}
+
+/*estilizando rodapé*/
+footer{
+  padding: 24px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/*media queries (mudando a imagem de fundo após certo tamanho)*/
+@media (min-width: 700px){
+  :root{
+    --bg-url: url(./assets/dark-mode.jpg);
+  }
+
+  .light{
+    --bg-url: url(./assets/light-mode.jpg);
+  }
+}
+
+/*aniamção (deslize do botão)*/
+@keyframes slide-in{
+  from {
+    left: 0;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-on{
+  from {
+    left: 50%;
+  }
+  to {
+    left: 0;
+  }
+}
